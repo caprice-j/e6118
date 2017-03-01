@@ -1,4 +1,6 @@
 
++ [Raspberry Pi 3 Benchmark Results](https://openbenchmarking.org/result/1603058-GA-RASPBERRY01)
+
 ### KVM-enabled Kernel Installation on RP 2/3
 
 + First do the following steps **on Raspberry Pi** according to [official build manual](https://www.raspberrypi.org/documentation/linux/kernel/building.md):
