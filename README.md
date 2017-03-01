@@ -13,10 +13,11 @@
         - "Patch physical to virtual translations at runtime" ... CONFIG_ARM_PATCH_PHYS_VIRT=y. Disabled if you really want to make kernel compact.
         - "Control Group support" ... CONFIG_CGROUPS=y. control group is a technology used for virtualization (I'll explain in Zap paper reading maybe)
         - "Support for Large Physical Address Extension" ... CONFIG_ARM_LPAE=y. 3-level page table format (classic is 2-level)
-        - "Use appended device tree blob to zImage" ... CONFIG_ARM_APPENDED_DTB=y. for [backword compatibility](http://cateee.net/lkddb/web-lkddb/ARM_APPENDED_DTB.html)
-        - "Supplement the appended DTB with traditional ATAG information" ... CONFIG_ARM_ATAG_DTB_COMPAT=y. for backword compatibility
+        - "Boot Options -> Use appended device tree blob to zImage" ... CONFIG_ARM_APPENDED_DTB=y. for [backword compatibility](http://cateee.net/lkddb/web-lkddb/ARM_APPENDED_DTB.html)
+        - "Boot Options -> Supplement the appended DTB with traditional ATAG information" ... CONFIG_ARM_ATAG_DTB_COMPAT=y. for backword compatibility
       - first enable "Virtualization" and then
         - "Kernel-based Virtual Machine (KVM) support"
+          - Note: doesn't display without "Support for Large Physical Address Extension" enabled
         - "Host kernel accelerator for virtio net (NEW)"
         - "Cross-endian support for vhost"
 
