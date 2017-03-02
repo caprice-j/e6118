@@ -1,6 +1,10 @@
 
 + [Raspberry Pi 3 Benchmark Results](https://openbenchmarking.org/result/1603058-GA-RASPBERRY01)
 
++ In order to compile QEMU 2.8.? I needed to [update GCC](https://solarianprogrammer.com/2016/06/24/raspberry-pi-raspbian-install-gcc-compile-cpp-14-and-cpp-17-programs/)
+
++ [What is PMU](http://zhiyisun.github.io/2016/03/02/How-to-Use-Performance-Monitor-Unit-(PMU)-of-64-bit-ARMv8-A-in-Linux.html)
+
 ### KVM-enabled Kernel Installation on RP 2/3
 
 + First do the following steps **on Raspberry Pi** according to [official build manual](https://www.raspberrypi.org/documentation/linux/kernel/building.md):
