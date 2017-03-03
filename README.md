@@ -4,6 +4,26 @@
 + In order to compile QEMU 2.8.? I needed to [update GCC](https://solarianprogrammer.com/2016/06/24/raspberry-pi-raspbian-install-gcc-compile-cpp-14-and-cpp-17-programs/)
 
 + [What is PMU](http://zhiyisun.github.io/2016/03/02/How-to-Use-Performance-Monitor-Unit-(PMU)-of-64-bit-ARMv8-A-in-Linux.html)
+  + [How to build perf on RPI](https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=117547)
+
++ [aarch64-QEMU](https://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/)
+
++ [/proc/cpuinfo flag list](http://unix.stackexchange.com/questions/43539/what-do-the-flags-in-proc-cpuinfo-mean)
+
++ [ARM- Aarch64 / Linux Kernel Booting](https://events.linuxfoundation.org/images/stories/pdf/lcna_co2012_marinas.pdf)
+
++ [First guest OS](https://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/)
+
+```
+processor       : 2
+BogoMIPS        : 38.40
+Features        : fp asimd evtstrm crc32
+CPU implementer : 0x41   # ARM
+CPU architecture: 8      #
+CPU variant     : 0x0
+CPU part        : 0xd03  # Cortex-A53
+CPU revision    : 4      # minor revision
+```
 
 ### KVM-enabled Kernel Installation on RP 2/3
 
