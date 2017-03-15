@@ -25,6 +25,44 @@ CPU part        : 0xd03  # Cortex-A53
 CPU revision    : 4      # minor revision
 ```
 
++ [Debian Test OS for QEMU](https://people.debian.org/~aurel32/qemu/armhf/)
+  + add -nographic and console=ttyAMA0
+
+```
+# switch between qemu-monitor/guest-VM by C-a c
+(qemu) savevm mytag
+(qemu) info snapshots
+# List of snapshots present on all disks:
+# ID        TAG          VM SIZE                DATE       VM CLOCK
+# --        mytag            43M 2017-03-03 12:16:52   00:35:38.054
+
+```
+
++[RPI3 has crc32](https://www.raspberrypistarterkits.com/2016/03/04/raspberry-pi-3-pi-2-pi-b-benchmark-review/)
+
++[RPI does not have GIC](https://www.kraxel.org/blog/2016/04/fedora-on-raspberry-pi-updates/)
+
+```
+./configure --target-list=arm-softmmu --enable-kvm
+make CC=gcc-6 -j4
+```
+
++ Kernel Configurations by make ARCH=arm64 menuconfig
+  + Cryptographic API -> ARM64 Accelerated Cryptographic Algorithms
+  + ARMv8.1 Architectural Features -> [Enable support for Virtualization Host Extension (VHE)](https://lwn.net/Articles/650524/)
+    - reduces world switch cost of KVM
+
++ Considerations
+  + Kernel features
+    + virtual address space size (39 or 48)
+    + Page size 4/16/64
+    + Timer frequency(default:1000Hz)
+    + Transparent Hugepage Support
+    + Enable paravirt code
+    + paravirt steal time accounting
+    + Xen guest support on ARM64
+
+
 ### KVM-enabled Kernel Installation on RP 2/3
 
 + First do the following steps **on Raspberry Pi** according to [official build manual](https://www.raspberrypi.org/documentation/linux/kernel/building.md):
@@ -52,7 +90,7 @@ CPU revision    : 4      # minor revision
 + List
   +[NOOBS should be FAT not exFAT](https://www.raspberrypi.org/documentation/installation/sdxc_formatting.md)
 
-
++ [LKVM (kvmtool)](http://events.linuxfoundation.org/sites/events/files/slides/kvmtool.pdf)
 
 
 
