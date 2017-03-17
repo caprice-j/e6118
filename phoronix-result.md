@@ -12,7 +12,55 @@ phoronix-test-suite run himeno
 
 
 ```
-Himeno Benchmark 3.0:
+
+Himeno Benchmark 3.0 (bare-metal RPI3):
+    pts/himeno-1.2.0
+    Test 1 of 1
+    Estimated Trial Run Count:    3
+    Estimated Time To Completion: 3 Minutes [22:45 UTC]
+        Started Run 1 @ 22:42:13
+        Started Run 2 @ 22:43:54
+        Started Run 3 @ 22:45:26
+        Started Run 4 @ 22:47:02 *
+        Started Run 5 @ 22:48:40 *
+        Started Run 6 @ 22:50:12 *
+
+    Poisson Pressure Solver:
+        34.454929
+        44.538744
+        42.770318
+        37.389932
+        37.406793
+        38.486142
+
+    Average: 39.17 MFLOPS
+    Deviation: 9.60%
+
+    Do you want to view the text results of the testing (Y/n): y
+himeno1b
+Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
+
+
+Unknown -  - raspberrypi rpi:
+
+        Processor: Unknown @ 1.20GHz (4 Cores), Motherboard: raspberrypi rpi, Memory: 785MB, Disk: 8GB SD8GB, Monitor: LC-32LB480U
+
+        OS: openSUSE 42.2, Kernel: 4.4.49-16-default (aarch64), Compiler: GCC 4.8.5, File-System: ext4, Screen Resolution: 1920x1080
+
+Himeno Benchmark 3.0
+Poisson Pressure Solver
+  MFLOPS
+    Unknown -  - raspberrypi rpi .. 39.17 |==================================================================================================================================================================================================
+
+    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
+    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
+
+Results Uploaded To: http://openbenchmarking.org/result/1703170-RI-HIMENO1B185
+
+```
+
+```
+Himeno Benchmark 3.0 (KVM):
     pts/himeno-1.2.0
     Test 1 of 1
     Estimated Trial Run Count:    3

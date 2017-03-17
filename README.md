@@ -78,5 +78,7 @@ netstat -a |grep LISTEN |grep -v unix           # whether 12865 (netserver) is r
 ```
 
 
-+ [Raspberry Pi 3 Benchmark Results](https://openbenchmarking.org/result/1603058-GA-RASPBERRY01)
+##### Resources
 
++ [Raspberry Pi 3 Benchmark Results](https://openbenchmarking.org/result/1603058-GA-RASPBERRY01)
++ [OpenSUSE:RPI3](https://en.opensuse.org/HCL:Raspberry_Pi3)
