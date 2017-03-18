@@ -60,6 +60,27 @@ wget
 savevm your_tagname
 loadvm your_tagname
 
+
+# boot ubuntu 32bit
+
+wget http://cloud-images.ubuntu.com/xenial/20170311/xenial-server-cloudimg-armhf-disk1.img
+# extract initrd.img-4.4.0-66-generic-lpae and vmlinuz-4.4.0-66-generic-lpae from the above img
+
+../rom/qemu-system-aarch64 --enable-kvm -m 300 -cpu host,aarch64=off \
+ -nographic -machine virt,kernel_irqchip=off \
+ -kernel vmlinuz-4.4.0-66-generic-lpae \
+ -append 'root=/dev/vda1 rw rootwait mem=300M console=ttyS0 \
+  console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init \
+  ds=nocloud ubuntu-pass=upass' \
+ -drive if=none,id=image,file=xenial-server-cloudimg-armhf-disk1.img \
+ -initrd initrd.img-4.4.0-66-generic-lpae \
+ -device virtio-blk-device,drive=image \
+ -netdev user,id=user0 \
+ -device virtio-net-device,netdev=user0
+
+ # login by username "ubuntu" and password "upass"
+
+# about aarch64=off flag, see: https://www.redhat.com/archives/libvir-list/2015-May/msg00770.html
 ```
 
 ### cpufreq
