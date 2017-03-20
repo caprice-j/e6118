@@ -83,7 +83,7 @@ loadvm your_tagname
 wget http://cloud-images.ubuntu.com/xenial/20170311/xenial-server-cloudimg-armhf-disk1.img
 # extract initrd.img-4.4.0-66-generic-lpae and vmlinuz-4.4.0-66-generic-lpae from the above img
 
-../qemu-system-aarch64 --enable-kvm -m 300 -cpu host,aarch64=off \
+taskset -c 3-3 ../qemu-system-aarch64 --enable-kvm -m 300 -cpu host,aarch64=off \
  -nographic -machine virt,kernel_irqchip=off \
  -kernel vmlinuz-4.4.0-66-generic-lpae \
  -append 'root=/dev/vda1 rw rootwait mem=300M console=ttyS0 \
@@ -94,6 +94,7 @@ wget http://cloud-images.ubuntu.com/xenial/20170311/xenial-server-cloudimg-armhf
  -device virtio-blk-device,drive=image \
  -netdev user,id=user0,hostfwd=tcp::5555-:22 \
  -device virtio-net-device,netdev=user0
+
 
  # login by username "ubuntu" and password "upass"
 # about aarch64=off flag, see: https://www.redhat.com/archives/libvir-list/2015-May/msg00770.html
@@ -140,3 +141,4 @@ https://github.com/phoronix-test-suite/phoronix-test-suite.git
 + [Raspberry Pi 3 Benchmark Results](https://openbenchmarking.org/result/1603058-GA-RASPBERRY01)
 + [OpenSUSE:RPI3](https://en.opensuse.org/HCL:Raspberry_Pi3)
 + [How to save/load to RPI's SD card (I used /dev/rdisk2 instead of /dev/disk2)](https://computers.tutsplus.com/articles/how-to-clone-raspberry-pi-sd-cards-using-the-command-line-in-os-x--mac-59911)
++ [Performance measurements on SBCs](https://learn.sparkfun.com/tutorials/single-board-computer-benchmarks/the-tests)
