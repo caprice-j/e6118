@@ -54,6 +54,41 @@ WAV To FLAC
 Results Uploaded To: http://openbenchmarking.org/result/1703201-RI-ENCODEFLA69
 
 
+FLAC Audio Encoding 1.3.1 (KVM with taskset -c 3-3):
+    pts/encode-flac-1.5.0 [WAV To FLAC]
+    Test 2 of 2
+    Estimated Trial Run Count:    5
+    Estimated Time To Completion: 2 Minutes
+        Started Run 1 @ 22:21:28
+        Started Run 2 @ 22:29:36
+        Started Run 3 @ 22:37:28
+        Started Run 4 @ 22:45:19
+        Started Run 5 @ 22:53:04  [Std. Dev: 5.57%]
+        Started Run 6 @ 23:00:02  [Std. Dev: 5.03%]
+        Started Run 7 @ 23:07:53  [Std. Dev: 4.62%]
+        Started Run 8 @ 23:15:43  [Std. Dev: 4.28%]
+        Started Run 9 @ 23:23:31  [Std. Dev: 4.00%]
+        Started Run 10 @ 23:31:18 [Std. Dev: 3.77%]
+
+    Test Results:
+        482.27784991264
+        470.57331895828
+        468.73620295525
+        462.40901684761
+        415.98164391518
+        468.64275312424
+        468.5143020153
+        465.67203497887
+        464.90245389938
+        464.17871308327
+
+    Average: 463.19 Seconds
+
+    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
+    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
+
+Results Uploaded To: http://openbenchmarking.org/result/1703202-KH-1703201RI44
+
 ```
 
 ## Numerical computations
@@ -224,6 +259,24 @@ imeno Benchmark 3.0 (2nd trial):
 
     Would you like to upload the results to OpenBenchmarking.org (Y/n):
 
+Himeno Benchmark 3.0 (3rd with taskset):
+    pts/himeno-1.2.0
+    Test 1 of 2
+    Estimated Trial Run Count:    3
+    Estimated Test Run-Time:      8 Minutes
+    Estimated Time To Completion: 10 Minutes
+        Started Run 1 @ 22:17:11
+        Started Run 2 @ 22:18:59
+        Started Run 3 @ 22:20:23  [Std. Dev: 1.37%]
+
+    Test Results:
+        35.382045
+        35.94059
+        36.363604
+
+    Average: 35.90 MFLOPS
+
+
 ```
 
 
@@ -320,6 +373,46 @@ Multiple Sequence Alignment
     Unknown -  - raspberrypi rpi .. 56.79 |==================================================================================================================================================================================================
 
     Would you like to upload the results to OpenBenchmarking.org (Y/n): n
+
+
+
+Timed MAFFT Alignment 6.864 (taskset -c 3-3):
+    pts/mafft-1.4.0
+    Test 1 of 1
+    Estimated Trial Run Count:    3
+    Estimated Time To Completion: 6 Minutes [23:53 UTC]
+        Started Run 1 @ 23:47:43
+        Started Run 2 @ 23:53:08
+        Started Run 3 @ 23:58:41
+
+    Multiple Sequence Alignment:
+        324.26875782013
+        331.91063284874
+        332.07411503792
+
+    Average: 329.42 Seconds
+    Deviation: 1.35%
+
+    Do you want to view the text results of the testing (Y/n): y
+mafft2btask
+Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
+
+
+Unknown -  - raspberrypi rpi:
+
+        Processor: Unknown @ 1.20GHz (4 Cores), Motherboard: raspberrypi rpi, Memory: 785MB, Disk: 128GB ACLCF, Monitor: LC-32LB480U
+
+        OS: openSUSE 42.2, Kernel: 4.4.49-16-default (aarch64), Compiler: GCC 4.8.5, File-System: ext4, Screen Resolution: 1920x1080
+
+Timed MAFFT Alignment 6.864
+Multiple Sequence Alignment
+  Seconds
+    Unknown -  - raspberrypi rpi .. 329.42 |=================================================================================================================================================================================================
+
+    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
+    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
+
+Results Uploaded To: http://openbenchmarking.org/result/1703213-RI-MAFFT2BTA81
 
 
 ```
