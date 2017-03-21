@@ -1,7 +1,7 @@
 
 ## KVM/QEMU on OpenSUSE/RPI3
 
-openSUSE Leap 42.2 officially announced that [they support KVM on Raspberry Pi 3](https://news.opensuse.org/2016/12/05/opensuse-leap-42-2-gets-64-bit-raspberry-image/). Here, I'll write down what I did to make KVM/QEMU on openSUSE/RPI3. My environments are Mac OS X (El Capitan 10.11.6).
+openSUSE Leap 42.2 officially announced that [they support KVM on Raspberry Pi 3](https://news.opensuse.org/2016/12/05/opensuse-leap-42-2-gets-64-bit-raspberry-image/). Here, I'll write down what I did to make KVM/QEMU on openSUSE/RPI3. My environments are Mac OS X (El Capitan 10.11.6) and VMWare Workstation (running Ubuntu 16.04) on it.
 
 #### Downloading and installing OpenSUSE
 
