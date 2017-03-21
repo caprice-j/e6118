@@ -414,6 +414,24 @@ Multiple Sequence Alignment
 
 Results Uploaded To: http://openbenchmarking.org/result/1703213-RI-MAFFT2BTA81
 
+Timed MAFFT Alignment 6.864:
+    pts/mafft-1.4.0
+    Test 1 of 1
+    Estimated Trial Run Count:    3
+    Estimated Time To Completion: 14 Minutes [02:58 UTC]
+        Started Run 1 @ 02:45:00
+        Started Run 2 @ 02:50:31
+        Started Run 3 @ 02:55:54
+
+    Multiple Sequence Alignment:
+        330.2937169075
+        322.11399078369
+        315.8135368824
+
+    Average: 322.74 Seconds
+    Deviation: 2.25%
+
+    Do you want to view the text results of the testing (Y/n):
 
 ```
 
@@ -463,6 +481,28 @@ Timed MAFFT Alignment 6.864 (2nd trial):
 
     Would you like to upload the results to OpenBenchmarking.org (Y/n): n
 
+
+Timed MAFFT Alignment 6.864 (3rd with taskset -c 3-3):
+    pts/mafft-1.4.0
+    Test 1 of 1
+    Estimated Trial Run Count:    3
+    Estimated Time To Completion: 21 Minutes
+        Started Run 1 @ 03:13:05
+        Started Run 2 @ 03:17:25
+        Started Run 3 @ 03:22:16  [Std. Dev: 6.28%]
+        Started Run 4 @ 03:26:46  [Std. Dev: 12.04%]
+        Started Run 5 @ 03:30:24  [Std. Dev: 11.22%]
+        Started Run 6 @ 03:35:10  [Std. Dev: 10.89%]
+
+    Test Results:
+        255.0637550354
+        288.90545988083
+        268.75113797188
+        215.59939813614
+        284.35250997543
+        293.02896690369
+
+    Average: 267.62 Seconds
 ```
 
 

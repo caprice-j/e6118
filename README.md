@@ -3,23 +3,52 @@
 
 openSUSE Leap 42.2 officially announced that [they support KVM on Raspberry Pi 3](https://news.opensuse.org/2016/12/05/opensuse-leap-42-2-gets-64-bit-raspberry-image/). Here, I'll write down what I did to make KVM/QEMU on openSUSE/RPI3. My environments are Mac OS X (El Capitan 10.11.6).
 
-#### Downloading OpenSUSE
+#### Downloading and installing OpenSUSE
 
 ```
-
 wget http://download.opensuse.org/ports/aarch64/distribution/leap/42.2/appliances/openSUSE-Leap42.2-ARM-X11-raspberrypi3.aarch64-2017.02.02-Build1.22.raw.xz
 xz -dv openSUSE-Leap42.2-ARM-X11-raspberrypi3.aarch64-2017.02.02-Build1.22.raw.xz
 # The default username/password is "root/linux"
 
+# check the device file of sdcard
+diskutil list
+
+# unmount
+diskutil unmountDisk /dev/disk2s1
+
 # Assume SD card is set on /dev/disk2 (and /dev/rdisk2) on Mac OS X
-# the next line is DANGEROUS operation -- read first: http://www.ev3dev.org/docs/tutorials/writing-sd-card-image-osx-command-line/
+#
+# the next command is DANGEROUS operation
+# -- read first: http://www.ev3dev.org/docs/tutorials/writing-sd-card-image-osx-command-line/
+#
 sudo dd if=/Users/PCUser/Downloads/_RPI3/openSUSE-Leap42.2-ARM-X11-raspberrypi3.aarch64-2017.02.02-Build1.21.raw of=/dev/rdisk2 bs=4m
 
-# By pressing Ctrl-T while dd-ing, you can check update
+# this takes a few minutes. By pressing Ctrl-T while dd-ing, you can check update
 
 ```
 
-Then set SD card on RPI3, boot it, and ssh to it.
+Then set SD card on RPI3, boot it, and ssh to it. `root` password is `linux`.
+
+#### Verifying installation
+
+```
+# change password on OpenSUSE
+passwd
+
+# check whether kvm is enabled
+ls /dev/kvm
+
+# check whether kernel is booted in Hyp mode
+dmesg | grep kvm
+# if you see "error: KVM vGIC probing failed" message,
+# it's no problem -- RPI3 doesn't have GIC and we'll use userspace-emulated GIC
+
+# check whether CPU is executed in 64-bit mdoe (aarch64)
+lscpu
+
+# check CPU part is 0xd03 (ARM Cortex A53) and CPU revision is 4
+cat proc/cpuinfo
+```
 
 #### Setting up and booting guest VMs
 
@@ -27,6 +56,8 @@ On RPI3, execute
 
 ```
 zypper install git
+
+# Download and  build Alexander Graf's patched QEMU
 git clone --branch no-kvm-irqchip --single-branch --depth 5 https://github.com/agraf/qemu qemu-patched
 cd qemu-patched
 
@@ -35,11 +66,20 @@ zypper install gcc gcc-c++ zlib-devel gtk2-devel libfdt1-devel make
 ./configure --target-list=aarch64-softmmu --enable-kvm --disable-werror
 make -j4
 
-# make -j4 takes a few minutes
+# make -j4 (compiling by 4 cores) takes a few minutes
 
 cd aarch64-softmmu
+./qemu-systemu-aarch64 --version
+# QEMU 2.7.5
 
+cd patched-qemu/aarch64-softmmu
+mkdir rom32
+cd rom32
+```
 
+#### Booting various guest OSes
+
+```
 # Trial 1. check QEMU by executing a lightweight image (buildroot)
 # see: https://www.bennee.com/~alex/blog/2014/05/09/running-linux-in-qemus-aarch64-system-emulation-mode/
 
@@ -51,13 +91,66 @@ wget http://people.linaro.org/~alex.bennee/images/aarch64-linux-3.15rc2-buildroo
 # boot without kvm ( ~ 50 sec )
 ./qemu-system-aarch64 -cpu cortex-a53 -machine type=virt -nographic -smp 1 -m 256 -kernel ../../aarch64-linux-3.15rc2-buildroot.img --append "console=ttyAMA0"
 
+```
 
-# Trial 2. boot 64-bit Ubuntu
+```
+# Trial 2. boot ubuntu 32bit by qemu-system-aarch64 (aarch32 execution mode)
+
+
+# the following commands are done on VMWare Ubuntu machine on my Macbook
+
+# extract initrd.img-4.4.0-66-generic-lpae and vmlinuz-4.4.0-66-generic-lpae from the ubuntu img
+wget http://cloud-images.ubuntu.com/xenial/20170311/xenial-server-cloudimg-armhf-disk1.img
+sudo modprobe nbd max_part=63
+sudo qemu-nbd -c /dev/nbd0 xenial-server-cloudimg-armhf-disk1.img
+mkdir mnt
+sudo mount /dev/nbd0p1 mnt
+
+# now you'll see the arm64 disk image contents under ./mnt
+# copy two files needed for booting ubuntu
+sudo cp ./mnt/boot/initrd* .
+sudo cp ./boot/vmlinuz* .
+
+sudo umount mnt
+sudo qemu-nbd -d /dev/nbd0
+
+# if you fail on /dev/nbd0, try on /dev/nbd1 and so on
+
+# on Macbook until here.
+# scp the above three files into RPI3's patched-qemu/aarch64-softmmu/rom32 directory,
+# and execute the following on RPI3
+
+# kernel_irqchip=off is for userspace GIC emulation
+
+taskset -c 3-3 ../qemu-system-aarch64 --enable-kvm -m 256 -cpu host,aarch64=off \
+ -nographic -machine virt,kernel_irqchip=off \
+ -kernel vmlinuz-4.4.0-66-generic-lpae \
+ -append 'root=/dev/vda1 rw rootwait mem=256M console=ttyS0 \
+  console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init \
+  ds=nocloud ubuntu-pass=upass' \
+ -drive if=none,id=image,file=xenial-server-cloudimg-armhf-disk1.img \
+ -initrd initrd.img-4.4.0-66-generic-lpae \
+ -device virtio-blk-device,drive=image \
+ -netdev user,id=user0,hostfwd=tcp::5555-:22 \
+ -device virtio-net-device,netdev=user0
+
+ # login by username "ubuntu" and password "upass"
+# about aarch64=off flag, see: https://www.redhat.com/archives/libvir-list/2015-May/msg00770.html
+
+ # after specyfing -netdev user,id=user0,hostfwd=tcp::5555-:22
+ssh -p 5555 ubuntu@localhost        # on another terminal
+```
+
+
+```
+# Trial 3 (optional). boot 64-bit Ubuntu
 
 # ubuntu image from http://cloud-images.ubuntu.com/xenial/current/
 # extracted /boot/initrd* and /boot/vmlinuz* by qemu-nbd on Macbook
 
 # boot ubuntu
+
+# Note: no aarch64=off flag because guest is 64-bit
 
 ./qemu-system-aarch64 --enable-kvm -m 300 -cpu host \
  -nographic -machine virt,kernel_irqchip=off \
@@ -77,32 +170,8 @@ loadvm your_tagname
 
 # by typing 'quit' in QEMU monitor, exit the VM.
 # All the packages installed are contained in the image.
-
-# Trial 3. boot ubuntu 32bit by qemu-system-aarch64 (aarch32 execution mode)
-
-wget http://cloud-images.ubuntu.com/xenial/20170311/xenial-server-cloudimg-armhf-disk1.img
-# extract initrd.img-4.4.0-66-generic-lpae and vmlinuz-4.4.0-66-generic-lpae from the above img
-
-taskset -c 3-3 ../qemu-system-aarch64 --enable-kvm -m 300 -cpu host,aarch64=off \
- -nographic -machine virt,kernel_irqchip=off \
- -kernel vmlinuz-4.4.0-66-generic-lpae \
- -append 'root=/dev/vda1 rw rootwait mem=300M console=ttyS0 \
-  console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init \
-  ds=nocloud ubuntu-pass=upass' \
- -drive if=none,id=image,file=xenial-server-cloudimg-armhf-disk1.img \
- -initrd initrd.img-4.4.0-66-generic-lpae \
- -device virtio-blk-device,drive=image \
- -netdev user,id=user0,hostfwd=tcp::5555-:22 \
- -device virtio-net-device,netdev=user0
-
-
- # login by username "ubuntu" and password "upass"
-# about aarch64=off flag, see: https://www.redhat.com/archives/libvir-list/2015-May/msg00770.html
-
- # after specyfing -netdev user,id=user0,hostfwd=tcp::5556-:12865 
-ssh -p 5555 ubuntu@localhost        # on another terminal
-
 ```
+
 
 ### cpufreq
 
@@ -132,8 +201,9 @@ mv ngrok /usr/bin/
 ngrok authtoken       <your token>
 echo "(sleep 5 && /usr/bin/ngrok tcp 22 --config=/root/.ngrok2/ngrok.yml --log=stdout > /tmp/ng.log) &" >> /etc/rc.d/boot.local
 
-
-https://github.com/phoronix-test-suite/phoronix-test-suite.git
+git clone --depth 1 https://github.com/phoronix-test-suite/phoronix-test-suite.git
+cd phoronix-test-suite
+./phoronix-test-suite install himeno
 ```
 
 ##### Resources
@@ -142,3 +212,9 @@ https://github.com/phoronix-test-suite/phoronix-test-suite.git
 + [OpenSUSE:RPI3](https://en.opensuse.org/HCL:Raspberry_Pi3)
 + [How to save/load to RPI's SD card (I used /dev/rdisk2 instead of /dev/disk2)](https://computers.tutsplus.com/articles/how-to-clone-raspberry-pi-sd-cards-using-the-command-line-in-os-x--mac-59911)
 + [Performance measurements on SBCs](https://learn.sparkfun.com/tutorials/single-board-computer-benchmarks/the-tests)
+
+###### Papers
+
++ [ARM Virtualization: Performance and Architectural Implications](http://www.cs.columbia.edu/~cdall/pubs/isca2016-dall.pdf)
++ [A Measurement Study of ARM Virtualization Performance](https://academiccommons.columbia.edu/catalog/ac:205899)
++ [KVM/ARM: The Design and Implementation of the Linux ARM Hypervisor](http://www.cs.columbia.edu/~cdall/pubs/asplos019-dall.pdf)
