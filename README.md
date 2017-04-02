@@ -126,7 +126,7 @@ taskset -c 3-3 ../qemu-system-aarch64 --enable-kvm -m 256 -cpu host,aarch64=off 
  -nographic -machine virt,kernel_irqchip=off \
  -kernel vmlinuz-4.4.0-66-generic-lpae \
  -append 'root=/dev/vda1 rw rootwait mem=256M console=ttyS0 \
-  console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init \
+  console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init 
   ds=nocloud ubuntu-pass=upass' \
  -drive if=none,id=image,file=xenial-server-cloudimg-armhf-disk1.img \
  -initrd initrd.img-4.4.0-66-generic-lpae \
@@ -172,6 +172,41 @@ loadvm your_tagname
 # All the packages installed are contained in the image.
 ```
 
+```
+
+# Trial 4: Ubuntu corresponding to Linux Kernel 4.4.49 (Long Term Support)
+# 4.4.49 is used for OpenSUSE 42.2;
+# https://people.canonical.com/~kernel/info/kernel-version-map.html
+
+# wget https://cloud-images.ubuntu.com/releases/16.04/release-20170330/ubuntu-16.04-server-cloudimg-armhf-disk1.img
+
+kpartx -av
+# => add map loop1p1 (254:2): 0 840701 linear 7:1 3
+
+
+sudo modprobe nbd max_part=63
+sudo qemu-nbd -c /dev/nbd0 ubuntu-16.04-server-cloudimg-armhf-disk1.img
+mkdir /mnt/ospart
+mount /dev/nbd0p1 /mnt/ospart
+
+cp /mnt/ospart/boot/initrd.img-4.4.0-71-generic-lpae .
+cp /mnt/ospart/boot/vmlinuz-4.4.0-71-generic-lpae    .
+
+# we need to execute the following twice?
+
+ ../qemu-system-aarch64 --enable-kvm -m 256 -cpu host,aarch64=off \
+ -nographic -machine virt,kernel_irqchip=off \
+ -kernel vmlinuz-4.4.0-71-generic-lpae \
+ -append 'root=/dev/vda1 rw rootwait mem=256M console=ttyS0 \
+  console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init \
+  ds=nocloud ubuntu-pass=upass' \
+ -drive if=none,id=image,file=ubuntu-16.04-server-cloudimg-armhf-disk1.img \
+ -initrd initrd.img-4.4.0-71-generic-lpae \
+ -device virtio-blk-device,drive=image \
+ -netdev user,id=user0,hostfwd=tcp::5555-:22 \
+ -device virtio-net-device,netdev=user0
+
+```
 
 ### cpufreq
 
