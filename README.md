@@ -192,17 +192,19 @@ mount /dev/nbd0p1 /mnt/ospart
 cp /mnt/ospart/boot/initrd.img-4.4.0-71-generic-lpae .
 cp /mnt/ospart/boot/vmlinuz-4.4.0-71-generic-lpae    .
 
-# we need to execute the following twice?
+# we need to execute the following twice? (the first time ubuntu:upass failed)
 
  taskset -c 3-3 ../qemu-system-aarch64 --enable-kvm -m 256 -cpu host,aarch64=off \
  -nographic -machine virt,kernel_irqchip=off \
  -kernel vmlinuz-4.4.0-71-generic-lpae \
- -append 'root=/dev/vda1 rw rootwait mem=256M console=ttyS0 console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init ds=nocloud ubuntu-pass=upass' \
+ -append 'root=/dev/vda1 rootfstype=ext4 rw rootwait mem=256M console=ttyS0 console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init ds=nocloud ubuntu-pass=upass' \
  -drive if=none,id=image,file=ubuntu-16.04-server-cloudimg-armhf-disk1.img \
  -initrd initrd.img-4.4.0-71-generic-lpae \
  -device virtio-blk-device,drive=image \
  -netdev user,id=user0,hostfwd=tcp::5555-:22 \
  -device virtio-net-device,netdev=user0
+
+# Note: -append does not allow newline (\\)
 
 ```
 

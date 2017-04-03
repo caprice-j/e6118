@@ -19,6 +19,34 @@ netperf
 
 #### netperf on KVM -> netserver on Macbook
 
+```
+ubuntu@ubuntu:~$ netperf -H 192.168.0.3
+MIGRATED TCP STREAM TEST from 0.0.0.0 () port 0 AF_INET to 192.168.0.3 () port 0 AF_INET : demo
+Recv   Send    Send
+Socket Socket  Message  Elapsed
+Size   Size    Size     Time     Throughput
+bytes  bytes   bytes    secs.    10^6bits/sec
+
+131072  16384  16384    10.26      20.77
+ubuntu@ubuntu:~$ netperf -H 192.168.0.3 -t TCP_RR
+MIGRATED TCP REQUEST/RESPONSE TEST from 0.0.0.0 () port 0 AF_INET to 192.168.0.3 () port 0 AF_INET : demo : first burst 0
+Local /Remote
+Socket Size   Request  Resp.   Elapsed  Trans.
+Send   Recv   Size     Size    Time     Rate
+bytes  Bytes  bytes    bytes   secs.    per sec
+
+16384  87380  1        1       10.01      60.26
+131072 131072
+ubuntu@ubuntu:~$ netperf -H 192.168.0.3 -t TCP_MAERTS
+MIGRATED TCP MAERTS TEST from 0.0.0.0 () port 0 AF_INET to 192.168.0.3 () port 0 AF_INET : demo
+Recv   Send    Send
+Socket Socket  Message  Elapsed
+Size   Size    Size     Time     Throughput
+bytes  bytes   bytes    secs.    10^6bits/sec
+
+ 87380 131072 131072    10.00      32.99
+```
+
 #### netperf on RPI3 -> netserver on Macbook
 
 ```
