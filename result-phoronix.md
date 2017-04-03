@@ -1,545 +1,413 @@
-```
-sudo apt-get install phoronix-test-suite
-# or 
-git clone --depth 1 https://github.com/phoronix-test-suite/phoronix-test-suite.git
-zypper install Mesa-demo-x autoconf dmidecode m4
-```
-
-##
 
 ```
+linux:~/os/phoronix-test-suite # taskset -c 3-3 ./phoronix-test-suite run encode-flac
+
+Phoronix Test Suite v7.0.0
+System Information
+
+
+  PROCESSOR:          Unknown @ 1.20GHz (4 Cores)
+    Monitor:          LC-32LB480U
+
+  MOTHERBOARD:        raspberrypi rpi
+    Memory:           161MB
+
+  DISK:               128GB ACLCF
+    File-System:      ext4
+    Mount Options:    data=ordered noatime nobarrier rw
+
+  OPERATING SYSTEM:   openSUSE 42.2
+    Kernel:           4.4.49-16-default (aarch64)
+    Compiler:         GCC 4.8.5
+
+    Would you like to save these test results (Y/n): y
+
+Recently Saved Test Results:
+- himeno3b        [Today]
+- y               [12 days old]
+- yy              [12 days old]
+- mafft2btask     [13 days old]
+- encode-flac1b   [13 days old]
+
+    Enter a name to save these results under: encodeflac2b
+    Enter a unique name to describe this test run / configuration:
+
+
+If desired, enter a new description below to better describe this result set / system configuration under test.
+Press ENTER to proceed without changes.
+
+Current Description: Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
+
 New Description:
 
-
-FLAC Audio Encoding 1.3.1 (no taskset):
+FLAC Audio Encoding 1.3.1:
     pts/encode-flac-1.5.0
     Test 1 of 1
     Estimated Trial Run Count:    5
-    Estimated Time To Completion: 2 Minutes [21:22 UTC]
-        Started Run 1 @ 21:20:55
-        Started Run 2 @ 21:27:36
-        Started Run 3 @ 21:34:00
-        Started Run 4 @ 21:40:58
-        Started Run 5 @ 21:47:31
+    Estimated Time To Completion: 34 Minutes [01:28 UTC]
+        Started Run 1 @ 00:54:59
+        Started Run 2 @ 01:01:13
+        Started Run 3 @ 01:07:24
+        Started Run 4 @ 01:13:28
+        Started Run 5 @ 01:19:42
 
     WAV To FLAC:
-        399.72846794128
-        383.6098241806
-        416.40678310394
-        392.20964312553
-        388.55597496033
+        373.37433195114
+        369.50383710861
+        362.89667487144
+        373.65003800392
+        375.0130648613
 
-    Average: 396.10 Seconds
-    Deviation: 3.23%
+    Average: 370.89 Seconds
+    Deviation: 1.33%
 
-        Do you want to view the text results of the testing (Y/n): y
-encode-flac1b
-Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
-
-
-Unknown -  - raspberrypi rpi:
-
-        Processor: Unknown @ 1.20GHz (4 Cores), Motherboard: raspberrypi rpi, Memory: 785MB, Disk: 128GB ACLCF, Monitor: LC-32LB480U
-
-        OS: openSUSE 42.2, Kernel: 4.4.49-16-default (aarch64), Compiler: GCC 4.8.5, File-System: ext4, Screen Resolution: 1920x1080
-
-FLAC Audio Encoding 1.3.1
-WAV To FLAC
-  Seconds
-    Unknown -  - raspberrypi rpi .. 396.10 |=================================================================================================================================================================================================
-
-    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
-    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
-
-Results Uploaded To: http://openbenchmarking.org/result/1703201-RI-ENCODEFLA69
-
-
-FLAC Audio Encoding 1.3.1 (KVM with taskset -c 3-3):
-    pts/encode-flac-1.5.0 [WAV To FLAC]
-    Test 2 of 2
-    Estimated Trial Run Count:    5
-    Estimated Time To Completion: 2 Minutes
-        Started Run 1 @ 22:21:28
-        Started Run 2 @ 22:29:36
-        Started Run 3 @ 22:37:28
-        Started Run 4 @ 22:45:19
-        Started Run 5 @ 22:53:04  [Std. Dev: 5.57%]
-        Started Run 6 @ 23:00:02  [Std. Dev: 5.03%]
-        Started Run 7 @ 23:07:53  [Std. Dev: 4.62%]
-        Started Run 8 @ 23:15:43  [Std. Dev: 4.28%]
-        Started Run 9 @ 23:23:31  [Std. Dev: 4.00%]
-        Started Run 10 @ 23:31:18 [Std. Dev: 3.77%]
-
-    Test Results:
-        482.27784991264
-        470.57331895828
-        468.73620295525
-        462.40901684761
-        415.98164391518
-        468.64275312424
-        468.5143020153
-        465.67203497887
-        464.90245389938
-        464.17871308327
-
-    Average: 463.19 Seconds
-
-    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
-    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
-
-Results Uploaded To: http://openbenchmarking.org/result/1703202-KH-1703201RI44
-
-```
-
-## Numerical computations
-
-```
-phoronix-test-suite install himeno
-phoronix-test-suite run himeno
-```
-
-
-```
-
-Himeno Benchmark 3.0 (bare-metal RPI3):
-    pts/himeno-1.2.0
-    Test 1 of 1
-    Estimated Trial Run Count:    3
-    Estimated Time To Completion: 3 Minutes [22:45 UTC]
-        Started Run 1 @ 22:42:13
-        Started Run 2 @ 22:43:54
-        Started Run 3 @ 22:45:26
-        Started Run 4 @ 22:47:02 *
-        Started Run 5 @ 22:48:40 *
-        Started Run 6 @ 22:50:12 *
-
-    Poisson Pressure Solver:
-        34.454929
-        44.538744
-        42.770318
-        37.389932
-        37.406793
-        38.486142
-
-    Average: 39.17 MFLOPS
-    Deviation: 9.60%
-
-    Do you want to view the text results of the testing (Y/n): y
-himeno1b
-Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
-
-
-Unknown -  - raspberrypi rpi:
-
-        Processor: Unknown @ 1.20GHz (4 Cores), Motherboard: raspberrypi rpi, Memory: 785MB, Disk: 8GB SD8GB, Monitor: LC-32LB480U
-
-        OS: openSUSE 42.2, Kernel: 4.4.49-16-default (aarch64), Compiler: GCC 4.8.5, File-System: ext4, Screen Resolution: 1920x1080
-
-Himeno Benchmark 3.0
-Poisson Pressure Solver
-  MFLOPS
-    Unknown -  - raspberrypi rpi .. 39.17 |==================================================================================================================================================================================================
-
-    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
-    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
-
-Results Uploaded To: http://openbenchmarking.org/result/1703170-RI-HIMENO1B185
-
-Himeno Benchmark 3.0 (2nd trial on bare-metal):
-    pts/himeno-1.2.0
-    Test 1 of 1
-    Estimated Trial Run Count:    3
-    Estimated Time To Completion: 3 Minutes [19:36 UTC]
-
-        Started Run 1 @ 19:33:08
-        Started Run 2 @ 19:34:10
-        Started Run 3 @ 19:35:12
-
-    Poisson Pressure Solver:
-        64.232365
-        63.472698
-        63.847177
-
-    Average: 63.85 MFLOPS
-    Deviation: 0.59%
-
-    Do you want to view the text results of the testing (Y/n): himeno1b
-Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
-
-
-Unknown -  - raspberrypi rpi:
-
-        Processor: Unknown @ 1.20GHz (4 Cores), Motherboard: raspberrypi rpi, Memory: 785MB, Disk: 128GB ACLCF, Monitor: LC-32LB480U
-
-        OS: openSUSE 42.2, Kernel: 4.4.49-16-default (aarch64), Compiler: GCC 4.8.5, File-System: ext4, Screen Resolution: 1920x1080
-
-Himeno Benchmark 3.0
-Poisson Pressure Solver
-  MFLOPS
-    Unknown -  - raspberrypi rpi .. 63.85 |==================================================================================================================================================================================================
-
+    Do you want to view the text results of the testing (Y/n): n
     Would you like to upload the results to OpenBenchmarking.org (Y/n): n
 
+```
 
-Himeno Benchmark 3.0 (3rd-trial with taskset -c 3-3):
+```
+ubuntu@ubuntu:~$ phoronix-test-suite run encode-flac
+
+Phoronix Test Suite v5.2.1
+System Information
+
+Hardware:
+Processor: ARMv7 rev 4 (1 Core), Motherboard: Generic DT based, Chipset: Red Hat Device 0008, Memory: 235MB, Disk: 3GB
+
+Software:
+OS: Ubuntu 16.04, Kernel: 4.4.0-71-generic-lpae (armv7l), Compiler: GCC 5.4.0 20160609, File-System: ext4, System Layer: qemu
+
+    Would you like to save these test results (Y/n): y
+    Enter a name to save these results under: encodeflac1
+    Enter a unique name to describe this test run / configuration:
+
+If you wish, enter a new description below to better describe this result set / system configuration under test.
+Press ENTER to proceed without changes.
+
+Current Description: qemu testing on Ubuntu 16.04 via the Phoronix Test Suite.
+
+New Description:
+
+
+FLAC Audio Encoding 1.3.1:
+    pts/encode-flac-1.5.0
+    Test 1 of 1
+    Estimated Trial Run Count:    5
+    Estimated Time To Completion: 2 Minutes
+        Started Run 1 @ 20:32:35
+        Started Run 2 @ 20:40:01
+        Started Run 3 @ 20:47:47
+        Started Run 4 @ 20:55:32
+        Started Run 5 @ 21:02:22  [Std. Dev: 5.58%]
+        Started Run 6 @ 21:10:12  [Std. Dev: 5.16%]
+        Started Run 7 @ 21:17:58  [Std. Dev: 4.77%]
+        Started Run 8 @ 21:25:42
+
+
+  [Std. Dev: 4.46%]
+        Started Run 9 @ 21:33:25
+
+  [Std. Dev: 5.49%]
+        Started Run 10 @ 21:40:14
+ [Std. Dev: 5.24%]
+
+    Test Results:
+        440.54042005539
+        463.96791601181
+        462.62256193161
+        408.11023116112
+        467.90976190567
+        464.05775308609
+        461.24587917328
+        461.57153105736
+        406.57661509514
+        461.99375510216
+
+    Average: 449.86 Seconds
+
+    Would you like to upload the results to OpenBenchmarking.org (Y/n):     Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n):
+Results Uploaded To: http://openbenchmarking.org/result/1704025-KH-ENCODEFLA87
+```
+
+
+###
+```
+linux:~/os/phoronix-test-suite # taskset -c 3-3 ./phoronix-test-suite run himeno
+
+Phoronix Test Suite v7.0.0
+System Information
+
+
+  PROCESSOR:          Unknown @ 1.20GHz (4 Cores)
+    Monitor:          LC-32LB480U
+
+  MOTHERBOARD:        raspberrypi rpi
+    Memory:           161MB
+
+  DISK:               128GB ACLCF
+    File-System:      ext4
+    Mount Options:    data=ordered noatime nobarrier rw
+
+  OPERATING SYSTEM:   openSUSE 42.2
+    Kernel:           4.4.49-16-default (aarch64)
+    Compiler:         GCC 4.8.5
+
+    Would you like to save these test results (Y/n): y
+
+Recently Saved Test Results:
+- y                  [12 days old]
+- yy                 [12 days old]
+- mafft2btask        [13 days old]
+- encode-flac1b      [13 days old]
+- himeno2b-taskset   [13 days old]
+
+    Enter a name to save these results under: himeno3b
+    Enter a unique name to describe this test run / configuration: taskset
+
+If desired, enter a new description below to better describe this result set / system configuration under test.
+Press ENTER to proceed without changes.
+
+Current Description: Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
+
+New Description:
+
+
+Himeno Benchmark 3.0:
     pts/himeno-1.2.0
     Test 1 of 1
     Estimated Trial Run Count:    3
-    Estimated Time To Completion: 4 Minutes [21:11 UTC]
-        Started Run 1 @ 21:08:18
-        Started Run 2 @ 21:09:33
-        Started Run 3 @ 21:10:57
-        Started Run 4 @ 21:11:53 *
-        Started Run 5 @ 21:12:55 *
-        Started Run 6 @ 21:13:55 *
+    Estimated Time To Completion: 6 Minutes [00:50 UTC]
+        Started Run 1 @ 00:44:59
+        Started Run 2 @ 00:46:32
+        Started Run 3 @ 00:47:29
 
     Poisson Pressure Solver:
-        43.357229
-        37.136564
-        42.38671
-        38.408923
-        39.203652
-        38.963035
+        40.935121
+        39.654035
+        40.21899
 
-    Average: 39.91 MFLOPS
-    Deviation: 6.07%
+    Average: 40.27 MFLOPS
+    Deviation: 1.59%
 
-
-```
+    Do you want to view the text results of the testing (Y/n): n
+    Would you like to upload the results to OpenBenchmarking.org (Y/n): n
 
 ```
-Himeno Benchmark 3.0(KVM):
+
+### KVM
+
+```
+ubuntu@ubuntu:~$ phoronix-test-suite run himeno
+
+Phoronix Test Suite v5.2.1
+System Information
+
+Hardware:
+Processor: ARMv7 rev 4 (1 Core), Motherboard: Generic DT based, Chipset: Red Hat Device 0008, Memory: 235MB, Disk: 3GB
+
+Software:
+OS: Ubuntu 16.04, Kernel: 4.4.0-71-generic-lpae (armv7l), Compiler: GCC 5.4.0 20160609, File-System: ext4, System Layer: qemu
+
+    Would you like to save these test results (Y/n): y
+
+Recently Saved Test Results:
+- encodeflac1   [Today]
+
+    Enter a name to save these results under: himeno1
+    Enter a unique name to describe this test run / configuration:
+
+If you wish, enter a new description below to better describe this result set / system configuration under test.
+Press ENTER to proceed without changes.
+
+Current Description: qemu testing on Ubuntu 16.04 via the Phoronix Test Suite.
+
+New Description:
+
+
+Himeno Benchmark 3.0:
     pts/himeno-1.2.0
     Test 1 of 1
     Estimated Trial Run Count:    3
     Estimated Time To Completion: 3 Minutes
-        Started Run 1 @ 18:34:40
-
-        Started Run 2 @ 18:35:50
-        Started Run 3 @ 18:36:47  [Std. Dev: 10.23%]
-        Started Run 4 @ 18:38:17  [Std. Dev: 26.49%]
-        Started Run 5 @ 18:39:06  [Std. Dev: 25.20%]
-        Started Run 6 @ 18:40:43  [Std. Dev: 23.99%]
-
-    Test Results:
-        38.162006
-        34.950653
-        42.81465
-        61.194813
-        36.349573
-        36.20734
-
-    Average: 41.61 MFLOPS
-
-    Would you like to upload the results to OpenBenchmarking.org (Y/n):     Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
-
-Results Uploaded To: http://openbenchmarking.org/result/1703182-KH-HIMENO1HF86
-
-imeno Benchmark 3.0 (2nd trial):
-    pts/himeno-1.2.0
-    Test 1 of 1
-    Estimated Trial Run Count:    3
-    Estimated Time To Completion: 8 Minutes
-        Started Run 1 @ 19:49:56
-        Started Run 2 @ 19:51:05
-        Started Run 3 @ 19:52:23  [Std. Dev: 18.71%]
-        Started Run 4 @ 19:53:53  [Std. Dev: 19.11%]
-        Started Run 5 @ 19:55:20  [Std. Dev: 18.06%]
-        Started Run 6 @ 19:56:31  [Std. Dev: 17.05%]
+        Started Run 1 @ 22:28:10
+        Started Run 2 @ 22:29:54
+        Started Run 3 @ 22:30:55  [Std. Dev: 9.41%]
+        Started Run 4 @ 22:31:58  [Std. Dev: 8.15%]
+        Started Run 5 @ 22:33:38  [Std. Dev: 7.38%]
+        Started Run 6 @ 22:34:40  [Std. Dev: 7.09%]
 
     Test Results:
-        44.943501
-        31.482605
-        35.154981
-        29.871778
-        30.666999
-        30.721404
+        37.129749
+        32.343013
+        31.168548
+        31.941759
+        31.718855
+        30.937428
 
-    Average: 33.81 MFLOPS
-
-    Would you like to upload the results to OpenBenchmarking.org (Y/n):
-
-Himeno Benchmark 3.0 (3rd with taskset):
-    pts/himeno-1.2.0
-    Test 1 of 2
-    Estimated Trial Run Count:    3
-    Estimated Test Run-Time:      8 Minutes
-    Estimated Time To Completion: 10 Minutes
-        Started Run 1 @ 22:17:11
-        Started Run 2 @ 22:18:59
-        Started Run 3 @ 22:20:23  [Std. Dev: 1.37%]
-
-    Test Results:
-        35.382045
-        35.94059
-        36.363604
-
-    Average: 35.90 MFLOPS
-
-
-```
-
-
-
-```
-phoronix-test-suite install mafft
-phoronix-test-suite run mafft
-```
-
-```
-Timed MAFFT Alignment 6.864 (bare-metal):
-    pts/mafft-1.4.0
-    Test 1 of 1
-    Estimated Trial Run Count:    3
-    Estimated Time To Completion: 2 Minutes [23:08 UTC]
-        Started Run 1 @ 23:07:04
-        Started Run 2 @ 23:07:57
-        Started Run 3 @ 23:08:53
-        Started Run 4 @ 23:09:50 *
-        Started Run 5 @ 23:10:44 *
-        Started Run 6 @ 23:11:46 *
-
-    Multiple Sequence Alignment:
-        51.957767009735
-        55.796051979065
-        55.684154987335
-        52.980130910873
-        60.583452939987
-        61.80250287056
-
-    Average: 56.47 Seconds
-    Deviation: 7.04%
-
-    Do you want to view the text results of the testing (Y/n): y
-mafft1b
-Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
-
-
-Unknown -  - raspberrypi rpi:
-
-        Processor: Unknown @ 1.20GHz (4 Cores), Motherboard: raspberrypi rpi, Memory: 785MB, Disk: 8GB SD8GB, Monitor: LC-32LB480U
-
-        OS: openSUSE 42.2, Kernel: 4.4.49-16-default (aarch64), Compiler: GCC 4.8.5, File-System: ext4, Screen Resolution: 1920x1080
-
-Timed MAFFT Alignment 6.864
-Multiple Sequence Alignment
-  Seconds
-    Unknown -  - raspberrypi rpi .. 56.47 |==================================================================================================================================================================================================
-
-    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
-    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
-
-Results Uploaded To: http://openbenchmarking.org/result/1703177-RI-MAFFT1B8832
-
-
-
-Timed MAFFT Alignment 6.864 (bare-metal, second-try, with no VM):
-    pts/mafft-1.4.0
-    Test 1 of 1
-    Estimated Trial Run Count:    3
-    Estimated Time To Completion: 2 Minutes [19:28 UTC]
-        Started Run 1 @ 19:26:08
-        Started Run 2 @ 19:27:05
-        Started Run 3 @ 19:27:58
-        Started Run 4 @ 19:28:55 *
-        Started Run 5 @ 19:29:52 *
-        Started Run 6 @ 19:30:55 *
-
-    Multiple Sequence Alignment:
-        55.697296857834
-        51.890042066574
-        56.715705156326
-        55.729553937912
-        61.865330934525
-        58.83553814888
-
-    Average: 56.79 Seconds
-    Deviation: 5.91%
-
-    Do you want to view the text results of the testing (Y/n): y
-mafft1b
-Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
-
-
-Unknown -  - raspberrypi rpi:
-
-        Processor: Unknown @ 1.20GHz (4 Cores), Motherboard: raspberrypi rpi, Memory: 785MB, Disk: 128GB ACLCF, Monitor: LC-32LB480U
-
-        OS: openSUSE 42.2, Kernel: 4.4.49-16-default (aarch64), Compiler: GCC 4.8.5, File-System: ext4, Screen Resolution: 1920x1080
-
-Timed MAFFT Alignment 6.864
-Multiple Sequence Alignment
-  Seconds
-    Unknown -  - raspberrypi rpi .. 56.79 |==================================================================================================================================================================================================
+    Average: 32.54 MFLOPS
 
     Would you like to upload the results to OpenBenchmarking.org (Y/n): n
+```
 
 
+```
+linux:~/os/phoronix-test-suite # taskset -c 3-3 ./phoronix-test-suite run mafft
 
-Timed MAFFT Alignment 6.864 (taskset -c 3-3):
-    pts/mafft-1.4.0
-    Test 1 of 1
-    Estimated Trial Run Count:    3
-    Estimated Time To Completion: 6 Minutes [23:53 UTC]
-        Started Run 1 @ 23:47:43
-        Started Run 2 @ 23:53:08
-        Started Run 3 @ 23:58:41
-
-    Multiple Sequence Alignment:
-        324.26875782013
-        331.91063284874
-        332.07411503792
-
-    Average: 329.42 Seconds
-    Deviation: 1.35%
-
-    Do you want to view the text results of the testing (Y/n): y
-mafft2btask
-Unknown testing on openSUSE 42.2 via the Phoronix Test Suite.
+Phoronix Test Suite v7.0.1
+System Information
 
 
-Unknown -  - raspberrypi rpi:
+  PROCESSOR:          Unknown @ 1.20GHz (4 Cores)
+    Monitor:          LC-32LB480U
 
-        Processor: Unknown @ 1.20GHz (4 Cores), Motherboard: raspberrypi rpi, Memory: 785MB, Disk: 128GB ACLCF, Monitor: LC-32LB480U
+  MOTHERBOARD:        raspberrypi rpi
+    Memory:           161MB
 
-        OS: openSUSE 42.2, Kernel: 4.4.49-16-default (aarch64), Compiler: GCC 4.8.5, File-System: ext4, Screen Resolution: 1920x1080
+  DISK:               128GB ACLCF
+    File-System:      ext4
+    Mount Options:    data=ordered noatime nobarrier rw
 
-Timed MAFFT Alignment 6.864
-Multiple Sequence Alignment
-  Seconds
-    Unknown -  - raspberrypi rpi .. 329.42 |=================================================================================================================================================================================================
+  OPERATING SYSTEM:   openSUSE 42.2
+    Kernel:           4.4.49-16-default (aarch64)
+    Compiler:         GCC 4.8.5
 
-    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
-    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
+    Would you like to save these test results (Y/n): n
 
-Results Uploaded To: http://openbenchmarking.org/result/1703213-RI-MAFFT2BTA81
 
 Timed MAFFT Alignment 6.864:
     pts/mafft-1.4.0
     Test 1 of 1
     Estimated Trial Run Count:    3
-    Estimated Time To Completion: 14 Minutes [02:58 UTC]
-        Started Run 1 @ 02:45:00
-        Started Run 2 @ 02:50:31
-        Started Run 3 @ 02:55:54
+    Estimated Time To Completion: 15 Minutes [01:44 UTC]
+        Started Run 1 @ 01:30:15
+        Started Run 2 @ 01:35:25
+        Started Run 3 @ 01:39:49
+        Started Run 4 @ 01:45:12 *
+        Started Run 5 @ 01:50:42 *
+        Started Run 6 @ 01:56:02 *
 
     Multiple Sequence Alignment:
-        330.2937169075
-        322.11399078369
-        315.8135368824
+        309.79254603386
+        262.81028199196
+        322.04932284355
+        328.32955598831
+        319.40379309654
+        315.04603481293
 
-    Average: 322.74 Seconds
-    Deviation: 2.25%
-
-    Do you want to view the text results of the testing (Y/n):
+    Average: 309.57 Seconds
+    Deviation: 7.67%
 
 ```
 
+
 ```
-Timed MAFFT Alignment 6.864(KVM):
+ubuntu@ubuntu:~$ phoronix-test-suite run mafft
+
+Phoronix Test Suite v5.2.1
+System Information
+
+Hardware:
+Processor: ARMv7 rev 4 (1 Core), Motherboard: Generic DT based, Chipset: Red Hat Device 0008, Memory: 235MB, Disk: 3GB
+
+Software:
+OS: Ubuntu 16.04, Kernel: 4.4.0-71-generic-lpae (armv7l), Compiler: GCC 5.4.0 20160609, File-System: ext4, System Layer: qemu
+
+    Would you like to save these test results (Y/n): y
+
+Recently Saved Test Results:
+- himeno1       [Today]
+- encodeflac1   [Today]
+
+    Enter a name to save these results under: mafft1
+    Enter a unique name to describe this test run / configuration: n
+
+If you wish, enter a new description below to better describe this result set / system configuration under test.
+Press ENTER to proceed without changes.
+
+Current Description: qemu testing on Ubuntu 16.04 via the Phoronix Test Suite.
+
+New Description: n
+
+
+Timed MAFFT Alignment 6.864:
     pts/mafft-1.4.0
     Test 1 of 1
     Estimated Trial Run Count:    3
     Estimated Time To Completion: 2 Minutes
-        Started Run 1 @ 18:17:15
-        Started Run 2 @ 18:22:04
-        Started Run 3 @ 18:26:53  [Std. Dev: 0.47%]
+        Started Run 1 @ 22:52:12
+        Started Run 2 @ 22:57:13
+        Started Run 3 @ 23:01:38  [Std. Dev: 6.38%]
+        Started Run 4 @ 23:06:32  [Std. Dev: 5.81%]
+        Started Run 5 @ 23:11:33  [Std. Dev: 9.31%]
+        Started Run 6 @ 23:15:35  [Std. Dev: 8.64%]
 
     Test Results:
-        284.43918800354
-        287.06439685822
-        286.30809116364
+        296.51609611511
+        262.91470503807
+        291.33111310005
+        299.24927687645
+        239.58811903
+        295.81462001801
 
-    Average: 285.94 Seconds
-
-    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
-    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
-
-Results Uploaded To: http://openbenchmarking.org/result/1703185-KH-MAFFT1HF689
-
-Timed MAFFT Alignment 6.864 (2nd trial):
-    pts/mafft-1.4.0
-    Test 1 of 1
-    Estimated Trial Run Count:    3
-    Estimated Time To Completion: 15 Minutes
-        Started Run 1 @ 20:23:09
-        Started Run 2 @ 20:27:27
-        Started Run 3 @ 20:31:58  [Std. Dev: 17.29%]
-        Started Run 4 @ 20:35:11  [Std. Dev: 18.09%]
-        Started Run 5 @ 20:40:13  [Std. Dev: 17.01%]
-        Started Run 6 @ 20:45:14  [Std. Dev: 15.79%]
-
-    Test Results:
-        253.39373397827
-        268.52881288528
-        190.99365711212
-        300.04349589348
-        298.87847805023
-        297.05126309395
-
-    Average: 268.15 Seconds
+    Average: 280.90 Seconds
 
     Would you like to upload the results to OpenBenchmarking.org (Y/n): n
-
-
-Timed MAFFT Alignment 6.864 (3rd with taskset -c 3-3):
-    pts/mafft-1.4.0
-    Test 1 of 1
-    Estimated Trial Run Count:    3
-    Estimated Time To Completion: 21 Minutes
-        Started Run 1 @ 03:13:05
-        Started Run 2 @ 03:17:25
-        Started Run 3 @ 03:22:16  [Std. Dev: 6.28%]
-        Started Run 4 @ 03:26:46  [Std. Dev: 12.04%]
-        Started Run 5 @ 03:30:24  [Std. Dev: 11.22%]
-        Started Run 6 @ 03:35:10  [Std. Dev: 10.89%]
-
-    Test Results:
-        255.0637550354
-        288.90545988083
-        268.75113797188
-        215.59939813614
-        284.35250997543
-        293.02896690369
-
-    Average: 267.62 Seconds
 ```
 
 
 ```
-OpenSSL 1.0.1g (KVM):
+ubuntu@ubuntu:~$ phoronix-test-suite run openssl
+
+Phoronix Test Suite v5.2.1
+System Information
+
+Hardware:
+Processor: ARMv7 rev 4 (1 Core), Motherboard: Generic DT based, Chipset: Red Hat Device 0008, Memory: 235MB, Disk: 3GB
+
+Software:
+OS: Ubuntu 16.04, Kernel: 4.4.0-71-generic-lpae (armv7l), Compiler: GCC 5.4.0 20160609, File-System: ext4, System Layer: qemu
+
+    Would you like to save these test results (Y/n): openssl1
+    Would you like to save these test results (Y/n): y
+
+Recently Saved Test Results:
+- mafft1        [Today]
+- himeno1       [Today]
+- encodeflac1   [Today]
+
+    Enter a name to save these results under: openssl1
+    Enter a unique name to describe this test run / configuration: n
+
+If you wish, enter a new description below to better describe this result set / system configuration under test.
+Press ENTER to proceed without changes.
+
+Current Description: qemu testing on Ubuntu 16.04 via the Phoronix Test Suite.
+
+New Description:
+
+
+OpenSSL 1.0.1g:
     pts/openssl-1.9.0
     Test 1 of 1
     Estimated Trial Run Count:    3
     Estimated Time To Completion: 2 Minutes
-        Started Run 1 @ 19:44:33
-        Started Run 2 @ 19:44:55
-        Started Run 3 @ 19:45:18  [Std. Dev: 32.22%]
-        Started Run 4 @ 19:45:41  [Std. Dev: 31.25%]
-        Started Run 5 @ 19:46:03  [Std. Dev: 27.27%]
-        Started Run 6 @ 19:46:26  [Std. Dev: 25.45%]
+        Started Run 1 @ 23:47:47
+        Started Run 2 @ 23:48:10
+        Started Run 3 @ 23:48:32  [Std. Dev: 32.92%]
+        Started Run 4 @ 23:48:55  [Std. Dev: 27.32%]
+        Started Run 5 @ 23:49:17  [Std. Dev: 23.82%]
+        Started Run 6 @ 23:49:39  [Std. Dev: 29.60%]
 
     Test Results:
-        3.5
-        3.5
+        3.1
         5.9
-        3.2
-        3.9
-        3.5
+        6
+        6
+        6
+        3.1
 
-    Average: 3.92 Signs Per Second
+    Average: 5.02 Signs Per Second
 
-    Would you like to upload the results to OpenBenchmarking.org (Y/n): y
-    Would you like to attach the system logs (lspci, dmesg, lsusb, etc) to the test result (Y/n): y
-
-Results Uploaded To: http://openbenchmarking.org/result/1703187-KH-OPENSSL1H22
-
+    Would you like to upload the results to OpenBenchmarking.org (Y/n): n
 ```
-
-
-### Network
-
-```
-sudo apt-get install apache2-utils
-```
-
