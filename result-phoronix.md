@@ -1,5 +1,10 @@
 
 ```
+# for extracting himeno benchmark .lzh
+zypper install lhasa
+```
+
+```
 linux:~/os/phoronix-test-suite # taskset -c 3-3 ./phoronix-test-suite run encode-flac
 
 Phoronix Test Suite v7.0.0

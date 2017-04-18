@@ -194,6 +194,8 @@ cp /mnt/ospart/boot/vmlinuz-4.4.0-71-generic-lpae    .
 
 # we need to execute the following twice? (the first time ubuntu:upass failed)
 
+
+# Virtio version
  taskset -c 3-3 ../qemu-system-aarch64 --enable-kvm -m 256 -cpu host,aarch64=off \
  -nographic -machine virt,kernel_irqchip=off \
  -kernel vmlinuz-4.4.0-71-generic-lpae \
@@ -206,6 +208,26 @@ cp /mnt/ospart/boot/vmlinuz-4.4.0-71-generic-lpae    .
 
 # Note: -append does not allow newline (\\)
 
+```
+
+```
+lsmod | grep vhost
+modprobe vhost_net
+lsmod | grep vhost  # vhost_net should appear with vhost
+
+# add br0 by make_bridge.sh
+
+# copy /etc/qemu-ifup from http://www.linux-kvm.org/page/Networking
+
+# tap0 is created on top by 
+  taskset -c 3-3 ../qemu-system-aarch64 --enable-kvm -m 256 -cpu host,aarch64=off \
+ -nographic -machine virt,kernel_irqchip=off \
+ -kernel vmlinuz-4.4.0-71-generic-lpae \
+ -append 'root=/dev/vda1 rootfstype=ext4 rw rootwait mem=256M console=ttyS0 console=ttyAMA0,38400n8 init=/usr/lib/cloud-init/uncloud-init ds=nocloud ubuntu-pass=upass' \
+ -drive if=none,id=image,file=ubuntu-16.04-server-cloudimg-armhf-disk1.img \
+ -initrd initrd.img-4.4.0-71-generic-lpae \
+ -device virtio-blk-device,drive=image \
+ -device virtio-net-device,netdev=net0,mac=DE:AD:BE:EF:28:AE -netdev tap,id=net0,vhost=on
 ```
 
 ### cpufreq
@@ -247,6 +269,10 @@ cd phoronix-test-suite
 + [OpenSUSE:RPI3](https://en.opensuse.org/HCL:Raspberry_Pi3)
 + [How to save/load to RPI's SD card (I used /dev/rdisk2 instead of /dev/disk2)](https://computers.tutsplus.com/articles/how-to-clone-raspberry-pi-sd-cards-using-the-command-line-in-os-x--mac-59911)
 + [Performance measurements on SBCs](https://learn.sparkfun.com/tutorials/single-board-computer-benchmarks/the-tests)
++ [SSH PortForwarding](http://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot)
+
++ [virtio](https://www.ibm.com/developerworks/library/l-virtio/)
++ [vhost arch](http://blog.vmsplice.net/2011/09/qemu-internals-vhost-architecture.html)
 
 ###### Papers
 
