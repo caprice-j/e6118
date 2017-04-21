@@ -263,6 +263,17 @@ cd phoronix-test-suite
 ./phoronix-test-suite install himeno
 ```
 
+##### Convert qcow2 image to raw image
+
+(for executing the QEMU image on bare-metal RPI3)
+```
+qemu-img convert -f qcow2 -O raw ubuntu-16.04-server-cloudimg-armhf-disk1.img ubuntu-16.04-server-cloudimg-armhf-disk1-raw.img
+
+# Again, please double-check the output device is sd card
+sudo dd if=/Users/PCUser/Downloads/_RPI3/SUSE-copied-UBUNTU/ubuntu-16.04-server-cloudimg-armhf-disk1-raw.img of=/dev/rdisk2 bs=32m
+
+```
+
 ##### Resources
 
 + [Raspberry Pi 3 Benchmark Results](https://openbenchmarking.org/result/1603058-GA-RASPBERRY01)
