@@ -1,5 +1,6 @@
 # Mac (netperf) to VM (netserver)
 
+```
 PCUser@abc ~ $ netperf -H 192.168.0.13
 MIGRATED TCP STREAM TEST from (null) (0.0.0.0) port 0 AF_INET to (null) () port 0 AF_INET
 Recv   Send    Send
@@ -45,9 +46,11 @@ Size   Size    Size     Time     Throughput
 bytes  bytes   bytes    secs.    10^6bits/sec
 
 131072  16384  16384    10.00      44.20
+```
 
 # VM (netperf) to Mac (netserver)
 
+```
 ubuntu@ubuntu:~$ netperf -H 192.168.0.3
 MIGRATED TCP STREAM TEST from 0.0.0.0 () port 0 AF_INET to 192.168.0.3 () port 0 AF_INET : demo
 Recv   Send    Send
@@ -85,3 +88,4 @@ Size   Size    Size     Time     Throughput
 bytes  bytes   bytes    secs.    10^6bits/sec
 
  87380 131072 131072    10.00      34.69
+ ```
