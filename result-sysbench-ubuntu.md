@@ -103,11 +103,355 @@ Threads fairness:
 
 ```
 
+#### Take 2
+```
+ubuntu@ubuntu:~/sysbench/src/sysbench-small$ ../sysbench --test=cpu run
+WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+
+General statistics:
+    total time:                          10.0181s
+    total number of events:              147
+
+Latency (ms):
+         min:                                 29.10
+         avg:                                 67.97
+         max:                                130.27
+         95th percentile:                     82.96
+         sum:                               9991.12
+
+Threads fairness:
+    events (avg/stddev):           147.0000/0.00
+    execution time (avg/stddev):   9.9911/0.00
+
+ubuntu@ubuntu:~/sysbench/src/sysbench-small$ ../sysbench --test=cpu run
+WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Prime numbers limit: 10000
+
+Initializing worker threads...
+
+Threads started!
+
+
+General statistics:
+    total time:                          10.0210s
+    total number of events:              282
+
+Latency (ms):
+         min:                                 18.99
+         avg:                                 35.51
+         max:                                167.88
+         95th percentile:                     81.48
+         sum:                              10013.86
+
+Threads fairness:
+    events (avg/stddev):           282.0000/0.00
+    execution time (avg/stddev):   10.0139/0.00
+
+
+```
+
 ### Memory
 
 ```
+../sysbench --test=memory --memory-block-size=32M --memory-total-size=10GB run
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 32768KiB
+  total size: 10240MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 203 (   20.24 per second)
+
+6496.00 MiB transferred (647.78 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0281s
+    total number of events:              203
+
+Latency (ms):
+         min:                                 27.09
+         avg:                                 49.36
+         max:                                202.23
+         95th percentile:                     90.78
+         sum:                              10020.26
+
+Threads fairness:
+    events (avg/stddev):           203.0000/0.00
+    execution time (avg/stddev):   10.0203/0.00
+
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 32768KiB
+  total size: 10240MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 133 (   13.28 per second)
+
+4256.00 MiB transferred (425.09 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0121s
+    total number of events:              133
+
+Latency (ms):
+         min:                                 27.41
+         avg:                                 75.24
+         max:                                107.49
+         95th percentile:                     95.81
+         sum:                              10006.66
+
+Threads fairness:
+    events (avg/stddev):           133.0000/0.00
+    execution time (avg/stddev):   10.0067/0.00
+
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 32768KiB
+  total size: 10240MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 180 (   17.99 per second)
+
+5760.00 MiB transferred (575.53 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0082s
+    total number of events:              180
+
+Latency (ms):
+         min:                                 26.53
+         avg:                                 55.54
+         max:                                139.49
+         95th percentile:                     92.42
+         sum:                               9997.00
+
+Threads fairness:
+    events (avg/stddev):           180.0000/0.00
+    execution time (avg/stddev):   9.9970/0.00
+
+```
+
+#### 16MB
+
+```
+../sysbench --test=memory --memory-block-size=16M --memory-total-size=15GB run
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 16384KiB
+  total size: 15360MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 568 (   56.79 per second)
+
+9088.00 MiB transferred (908.61 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0020s
+    total number of events:              568
+
+Latency (ms):
+         min:                                 13.12
+         avg:                                 17.59
+         max:                                 24.27
+         95th percentile:                     22.28
+         sum:                               9993.39
+
+Threads fairness:
+    events (avg/stddev):           568.0000/0.00
+    execution time (avg/stddev):   9.9934/0.00
+
+WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 16384KiB
+  total size: 15360MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 519 (   51.85 per second)
+
+8304.00 MiB transferred (829.64 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0091s
+    total number of events:              519
+
+Latency (ms):
+         min:                                 13.12
+         avg:                                 19.27
+         max:                                 45.57
+         95th percentile:                     22.28
+         sum:                               9999.71
+
+Threads fairness:
+    events (avg/stddev):           519.0000/0.00
+    execution time (avg/stddev):   9.9997/0.00
+
+```
+
+####
+```
+../sysbench --test=memory --memory-block-size=8M --memory-total-size=15GB run
+
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 8192KiB
+  total size: 15360MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 1020 (  101.92 per second)
+
+8160.00 MiB transferred (815.37 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0077s
+    total number of events:              1020
+
+Latency (ms):
+         min:                                  6.45
+         avg:                                  9.80
+         max:                                 11.27
+         95th percentile:                     11.04
+         sum:                               9994.14
+
+Threads fairness:
+    events (avg/stddev):           1020.0000/0.00
+    execution time (avg/stddev):   9.9941/0.00
+
+
+sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from current time
+
+
+Running memory speed test with the following options:
+  block size: 8192KiB
+  total size: 15360MiB
+  operation: write
+  scope: global
+
+Initializing worker threads...
+
+Threads started!
+
+Total operations: 1110 (  110.95 per second)
+
+8880.00 MiB transferred (887.63 MiB/sec)
+
+
+General statistics:
+    total time:                          10.0041s
+    total number of events:              1110
+
+Latency (ms):
+         min:                                  6.45
+         avg:                                  9.00
+         max:                                 11.30
+         95th percentile:                     11.04
+         sum:                               9990.01
+
+Threads fairness:
+    events (avg/stddev):           1110.0000/0.00
+    execution time (avg/stddev):   9.9900/0.00
+```
+
+#### 128MB
+
+```
 ../sysbench --test=memory --memory-block-size=128M --memory-total-size=20GB run
-block-size=128M --memory-total-size=20GB run ../sysbench --test=memory --memory-b
 WARNING: the --test option is deprecated. You can pass a script name or path on the command line without any options.
 sysbench 1.1.0-4e0e44c (using bundled LuaJIT 2.1.0-beta2)
 
