@@ -3,10 +3,86 @@
 + Linux ubuntu 4.4.0-1009-raspi2 #10-Ubuntu SMP Tue Apr 19 19:51:04 UTC 2016 armv7l armv7l armv7l GNU/Linux
 	+  different from OpenSUSE measurements
 + downloaded RPI3 prebuilt image from https://wiki.ubuntu.com/ARM/RaspberryPi
-+ 
++
 +
 
+```
+ubuntu@ubuntu:~/phoronix-test-suite$ cat /etc/*-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04 LTS"
+NAME="Ubuntu"
+VERSION="16.04 LTS (Xenial Xerus)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 16.04 LTS"
+VERSION_ID="16.04"
+HOME_URL="http://www.ubuntu.com/"
+SUPPORT_URL="http://help.ubuntu.com/"
+BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+UBUNTU_CODENAME=xenial
+```
+
 ### CPU
+
+```
+ubuntu@ubuntu:~/phoronix-test-suite$ taskset -c 3-3 ./phoronix-test-suite run pts/himeno
+
+Phoronix Test Suite v7.2.0m1
+System Information
+
+
+  PROCESSOR:          ARMv7 rev 4 @ 1.20GHz (4 Cores)
+    Core Count:       4
+    Scaling Driver:   BCM2835 Freq ondemand
+
+  GRAPHICS:           BCM2708
+    Screen:           1824x984
+
+  MOTHERBOARD:        BCM2709 Raspberry Pi 3 Model B Rev 1.2
+    Memory:           920MB
+
+  DISK:               8GB SD8GB
+    File-System:      ext4
+    Mount Options:    data=ordered relatime rw
+
+  OPERATING SYSTEM:   Ubuntu 16.04
+    Kernel:           4.4.0-1009-raspi2 (armv7l)
+    Compiler:         GCC 5.4.0 20160609
+
+    Would you like to save these test results (Y/n): y
+    Enter a name to save these results under: himeno
+
+The name of the saved file cannot be the same as a test/suite: himeno
+    Enter a name to save these results under: himeno-
+    Enter a unique name to describe this test run / configuration:
+
+If desired, enter a new description below to better describe this result set / system configuration under test.
+Press ENTER to proceed without changes.
+
+Current Description: ARMv7 rev 4 testing with a BCM2709 Raspberry Pi 3 Model B Rev 1.2 and BCM2708 on Ubuntu 16.04 via the Phoronix Test Suite.
+
+New Description:
+
+
+Himeno Benchmark 3.0:
+    pts/himeno-1.2.0
+    Test 1 of 1
+    Estimated Trial Run Count:    3
+    Estimated Time To Completion: 3 Minutes [20:21 UTC]
+        Started Run 1 @ 20:18:36
+        Started Run 2 @ 20:19:32
+        Started Run 3 @ 20:20:23
+
+    Poisson Pressure Solver:
+        65.157371
+        65.134774
+        65.185451
+
+    Average: 65.16 MFLOPS
+    Deviation: 0.04%
+```
 
 ```
 ubuntu@ubuntu:~/sysbench/src$ ./sysbench --test=cpu run
@@ -399,6 +475,8 @@ Threads fairness:
 ```
 
 ### Netperf
+
+
 
 ### Threads
 

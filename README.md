@@ -274,6 +274,16 @@ sudo dd if=/Users/PCUser/Downloads/_RPI3/SUSE-copied-UBUNTU/ubuntu-16.04-server-
 
 ```
 
+##### UEFI
+
+```
+wget http://snapshots.linaro.org/components/kernel/leg-virt-tianocore-edk2-upstream/1127/QEMU-AARCH64/RELEASE_GCC49/QEMU_EFI.fd
+
+# check if UEFI console works
+qemu-system-aarch64 -nographic -m 512 -cpu cortex-a57 -M virt -bios QEMU_EFI.fd -nodefaults -serial stdio
+
+```
+
 ##### Resources
 
 + [Raspberry Pi 3 Benchmark Results](https://openbenchmarking.org/result/1603058-GA-RASPBERRY01)
@@ -284,6 +294,7 @@ sudo dd if=/Users/PCUser/Downloads/_RPI3/SUSE-copied-UBUNTU/ubuntu-16.04-server-
 
 + [virtio](https://www.ibm.com/developerworks/library/l-virtio/)
 + [vhost arch](http://blog.vmsplice.net/2011/09/qemu-internals-vhost-architecture.html)
++ [dump VM packets](http://blog.vmsplice.net/2011/04/how-to-capture-vm-network-traffic-using.html)
 
 ###### Papers
 
